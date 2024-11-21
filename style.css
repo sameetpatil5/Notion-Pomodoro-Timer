@@ -3,6 +3,9 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -13,16 +16,43 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  max-width: 500px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 1.1rem;
   box-sizing: border-box;
+  position: relative;
+}
+
+#interval-setting-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 #interval-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#settings-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #timer-container {
@@ -47,7 +77,18 @@ body {
 
 .interval-btn,
 #start-stop-btn,
-#reset-btn,
+#reset-btn{
+  border-radius: 50px;
+  border: 1px solid black;
+  color: black;
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  margin: 0.313rem;
+  padding: 0.313rem 0.5rem;
+  text-align: center;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
 #settings-btn {
   border-radius: 50px;
   border: 1px solid black;
@@ -60,9 +101,6 @@ body {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.interval-btn:hover,
-#start-stop-btn:hover,
-#reset-btn:hover,
 #settings-btn:hover {
   background-color: black;
   color: white;
@@ -70,13 +108,22 @@ body {
   cursor: pointer;
 }
 
+.interval-btn:hover,
+#start-stop-btn:hover,
+#reset-btn:hover {
+  background-color: black;
+  color: white;
+  border-color: black;
+  cursor: pointer;
+}
+
 #settings-modal {
+  z-index: 1;
   font-family: Rubik;
   display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -105,7 +152,7 @@ body {
 }
 
 .setting-option {
-  align-items:center;
+  align-items: center;
   font-family: Rubik;
   margin-bottom: 10px;
 }
@@ -146,15 +193,25 @@ body {
   width:60
 }
 
+/* Active (Clicked) State for Interval Buttons */
+.interval-btn.active, 
+#start-stop-btn.active {
+  background-color: grey;  /* Change background color on click */
+  color: white;
+  border-color: grey;  /* Change border color on click */
+}
+
 #option{
   font-family:Rubik;
   
 }
 
+button {
+  pointer-events: auto;  
+}
+
 select {
-  /* A reset of styles, including removing the default dropdown arrow */
   appearance: none;
-  /* Additional resets for further consistency */
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;

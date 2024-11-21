@@ -21,18 +21,21 @@ const saveBtn = document.getElementById('save-btn');
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
+  setActiveButton(pomodoroIntervalBtn);  // Set Focus button as active
   currentInterval = 'pomodoro';
   timeLeft = 25 * 60;
   updateTimeLeftTextContent();
 });
 
 shortBreakIntervalBtn.addEventListener('click', () => {
+  setActiveButton(shortBreakIntervalBtn);  // Set Short Break button as active
   currentInterval = 'short-break';
   timeLeft = 5 * 60;
   updateTimeLeftTextContent();
 });
 
 longBreakIntervalBtn.addEventListener('click', () => {
+  setActiveButton(longBreakIntervalBtn);  // Set Long Break button as active
   currentInterval = 'long-break';
   timeLeft = 10 * 60;
   updateTimeLeftTextContent();
@@ -40,6 +43,7 @@ longBreakIntervalBtn.addEventListener('click', () => {
 
 // Event listener for start/stop button
 startStopBtn.addEventListener('click', () => {
+  setStartStopButtonState(); // Toggle between Start/Stop
   if (startStopBtn.textContent === 'Start') {
     startTimer();
     startStopBtn.textContent = 'Stop';
@@ -51,6 +55,8 @@ startStopBtn.addEventListener('click', () => {
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
   stopTimer();
+  resetStartStopButtonState(); // Reset Start/Stop button
+  resetIntervalButtons(); // Reset all interval buttons to default state
   if (currentInterval === 'pomodoro') {
     timeLeft = 25 * 60;
   } else if (currentInterval === 'short-break') {
@@ -64,12 +70,20 @@ resetBtn.addEventListener('click', () => {
 
 // Event listener for settings button
 settingsBtn.addEventListener('click', () => {
+  console.log('Settings button clicked');
   settingsModal.style.display = 'flex';
 });
 
 // Event listener for close button in the settings modal
 closeModalBtn.addEventListener('click', () => {
   settingsModal.style.display = 'none';
+});
+
+// Close the modal if clicking outside of it
+window.addEventListener('click', (event) => {
+  if (event.target === settingsModal) {
+    settingsModal.style.display = 'none';
+  }
 });
 
 // Event listener for save button in the settings modal
@@ -87,6 +101,33 @@ saveBtn.addEventListener('click', () => {
   // Close the modal after saving preferences
   settingsModal.style.display = 'none';
 });
+
+// Function to set an interval button as active and reset the others
+function setActiveButton(activeButton) {
+  // Remove the 'active' class from all interval buttons
+  const intervalButtons = [pomodoroIntervalBtn, shortBreakIntervalBtn, longBreakIntervalBtn];
+  intervalButtons.forEach((btn) => btn.classList.remove('active'));
+
+  // Add the 'active' class to the clicked button
+  activeButton.classList.add('active');
+}
+
+// Function to reset all interval buttons to their default color
+function resetIntervalButtons() {
+  const intervalButtons = [pomodoroIntervalBtn, shortBreakIntervalBtn, longBreakIntervalBtn];
+  intervalButtons.forEach((btn) => btn.classList.remove('active'));
+}
+
+// Function to change the start/stop button state
+function setStartStopButtonState() {
+  // Toggle the active state on the start/stop button
+  startStopBtn.classList.toggle('active');
+}
+
+// Function to reset the start/stop button state
+function resetStartStopButtonState() {
+  startStopBtn.classList.remove('active');
+}
 
 // Function to start the timer
 function startTimer() {
@@ -145,11 +186,12 @@ function applyUserPreferences() {
   timeLeftEl.style.color = fontColor;
   // Update the buttons' font and background color
   const buttons = document.querySelectorAll('.interval-btn, #start-stop-btn, #reset-btn, #settings-btn');
-  buttons.forEach((button) => {
-    button.style.color = fontColor;
-    button.style.backgroundColor = backgroundColor;
-    button.style.borderColor = fontColor;
-  });
+  // TODO: fix the buttons
+  // buttons.forEach((button) => {
+  //   button.style.color = fontColor;
+  //   button.style.backgroundColor = backgroundColor;
+  //   button.style.borderColor = fontColor;
+  // });
 }
 
 // Apply user preferences on page load
