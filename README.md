@@ -95,3 +95,13 @@ For questions or feedback, please open an issue in the repository.
 ---
 
 _*Thankyou* for visiting this Repository_
+
+---
+
+### PS
+
+Thanks to **[@Giorgiark](https://github.com/Giorgiark)**, this GitHub repo was inspired by the [**`Giorgiark/pomodorotimer`**](https://github.com/giorgiark/pomodorotimer/) Git repo, which provided the base for the project. I didn't fork the repo because **Giorgiark's repo was very simple and barely had any features**. My idea is quite different from the original, but as **Giorgiark had the base template and colors figured out** for the Notion Space, I used his base to build upon.
+
+The original repo didn't have a license, but if I did something wrong, I apologize and would like to give full credit to [@Giorgiark](https://github.com/Giorgiark) for the original inspiration.
+
+---
