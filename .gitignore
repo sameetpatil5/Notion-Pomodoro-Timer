@@ -1,0 +1,51 @@
+# Ignore browser cache files
+
+*.log
+
+*.tmp
+
+*.cache
+
+
+
+# Ignore editor specific files
+
+.DS_Store
+
+.idea/
+
+.vscode/
+
+
+
+# Ignore build artifacts
+
+dist/
+
+build/
+
+
+
+# Ignore temporary files
+
+*.swp
+
+*.suo
+
+*.bak
+
+
+
+# Ignore local development files
+
+*.min.js
+
+*.min.css
+
+
+
+# Optional: Ignore specific files 
+
+README.md
+
+LICENSE
