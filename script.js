@@ -52,6 +52,19 @@ startStopBtn.addEventListener('click', () => {
   }
 });
 
+// Event listener for keydown space bar event to toggle start/stop
+document.addEventListener('keydown', (event) => {
+  // Check if the space bar was pressed
+  if (event.code === 'Space') {
+    event.preventDefault();
+
+    // Toggle start/stop logic only when window in focus
+    if (document.hasFocus()) {
+      toggleStartStop();
+    }
+  }
+});
+
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
   stopTimer();
@@ -156,6 +169,19 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timerInterval);
   startStopBtn.textContent = 'Start';
+}
+
+// Function to toggle the timer
+function toggleStartStop() {
+  if (startStopBtn.textContent === 'Start') {
+    startTimer();  // Start the timer
+    startStopBtn.textContent = 'Stop';
+    startStopBtn.classList.add('active');
+  } else {
+    stopTimer();  // Stop the timer
+    startStopBtn.textContent = 'Start';
+    startStopBtn.classList.remove('active');
+  }
 }
 
 // Function to update the time left text content
