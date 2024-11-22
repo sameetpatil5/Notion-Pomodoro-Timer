@@ -18,6 +18,8 @@ const closeModalBtn = document.querySelector('.close-btn');
 const backgroundColorSelect = document.getElementById('background-color');
 const fontColorSelect = document.getElementById('font-color');
 const saveBtn = document.getElementById('save-btn');
+const timerContainer = document.getElementById('timer-container');
+const ripple = document.getElementById('ripple');
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
@@ -67,18 +69,15 @@ document.addEventListener('keydown', (event) => {
 
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
-  stopTimer();
-  resetStartStopButtonState(); // Reset Start/Stop button
-  resetIntervalButtons(); // Reset all interval buttons to default state
-  if (currentInterval === 'pomodoro') {
-    timeLeft = 25 * 60;
-  } else if (currentInterval === 'short-break') {
-    timeLeft = 5 * 60;
-  } else {
-    timeLeft = 10 * 60;
-  }
-  updateTimeLeftTextContent();
-  startStopBtn.textContent = 'Start';
+
+  // Reset the timer
+  resetTimer();
+});
+
+timerContainer.addEventListener('dblclick', () => {
+
+  // Reset the timer
+  resetTimer();
 });
 
 // Event listener for settings button
@@ -169,6 +168,46 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timerInterval);
   startStopBtn.textContent = 'Start';
+}
+
+// Function to reset the timer based on the current interval
+function resetTimer() {
+  // Reset the animation (allows retriggering)
+  ripple.classList.remove('animate');
+  void ripple.offsetWidth; // Trigger reflow to restart animation
+
+  // Add the animation class
+  ripple.classList.add('animate');
+
+  stopTimer(); // Stop the timer
+
+  // Add fade-out animation to text
+  timeLeftEl.classList.add('fade-out');
+
+  resetStartStopButtonState(); // Reset Start/Stop button
+  resetIntervalButtons(); // Reset all interval buttons to default state
+
+  setTimeout(() => {
+    // Update the timer value after fade-out
+    if (currentInterval === 'pomodoro') {
+      timeLeft = 25 * 60; // Reset to Focus interval
+    } else if (currentInterval === 'short-break') {
+      timeLeft = 5 * 60; // Reset to Short Break interval
+    } else if (currentInterval === 'long-break') {
+      timeLeft = 10 * 60; // Reset to Long Break interval
+    }
+    updateTimeLeftTextContent(); // Update the timer display
+    startStopBtn.textContent = 'Start';
+
+    // Fade in the text
+    timeLeftEl.classList.remove('fade-out');
+    timeLeftEl.classList.add('fade-in');
+  }, 300); // Match the fade-out duration in CSS
+
+  // Remove the fade-in class after animation
+  setTimeout(() => {
+    timeLeftEl.classList.remove('fade-in');
+  }, 600); // Allow fade-in to complete
 }
 
 // Function to toggle the timer
