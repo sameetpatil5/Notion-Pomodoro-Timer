@@ -31,7 +31,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem;
   position: relative;
 }
 
@@ -58,10 +58,41 @@ body {
   align-items: center;
 }
 
+#start-stop-option-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+#start-stop-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#option-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 /* Timer Styles */
 #timer-container {
   position: relative;
-  margin-top: 0.5rem;
+  margin: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,6 +112,7 @@ body {
 
 #time-left {
   font-family: "Karla", sans-serif;
+  font-variant-numeric: tabular-nums; /* by https://stackoverflow.com/users/1913729/blex*/
   font-size: 10.375rem;
   font-weight: 800;
   text-align: center;
@@ -125,7 +157,7 @@ body {
   100% {
     transform: scale(100);
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0); 
   }
 }
 
@@ -164,7 +196,8 @@ body {
 .interval-btn,
 #start-stop-btn,
 #reset-btn,
-#settings-btn {
+#settings-btn,
+#option-btn {
   border-radius: 50px;
   border: 1px solid black;
   color: black;
@@ -179,7 +212,8 @@ body {
 .interval-btn:hover,
 #start-stop-btn:hover,
 #reset-btn:hover,
-#settings-btn:hover {
+#settings-btn:hover,
+#option-btn:hover {
   background-color: black;
   color: white;
   border-color: black;

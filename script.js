@@ -8,7 +8,7 @@ let fontColor = '#37352F'; // Default font color
 // DOM elements
 const timeLeftEl = document.getElementById('time-left');
 const startStopBtn = document.getElementById('start-stop-btn');
-const resetBtn = document.getElementById('reset-btn');
+// const resetBtn = document.getElementById('reset-btn');
 const pomodoroIntervalBtn = document.getElementById('pomodoro-interval-btn');
 const shortBreakIntervalBtn = document.getElementById('short-break-interval-btn');
 const longBreakIntervalBtn = document.getElementById('long-break-interval-btn');
@@ -20,6 +20,8 @@ const fontColorSelect = document.getElementById('font-color');
 const saveBtn = document.getElementById('save-btn');
 const timerContainer = document.getElementById('timer-container');
 const ripple = document.getElementById('ripple');
+const optionBtn = document.getElementById('option-btn');
+const optionsCollapse = document.getElementById('options-collapse');
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
@@ -27,6 +29,7 @@ pomodoroIntervalBtn.addEventListener('click', () => {
   currentInterval = 'pomodoro';
   timeLeft = 25 * 60;
   updateTimeLeftTextContent();
+  resetTimer();
 });
 
 shortBreakIntervalBtn.addEventListener('click', () => {
@@ -34,6 +37,7 @@ shortBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'short-break';
   timeLeft = 5 * 60;
   updateTimeLeftTextContent();
+  resetTimer();
 });
 
 longBreakIntervalBtn.addEventListener('click', () => {
@@ -41,6 +45,7 @@ longBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'long-break';
   timeLeft = 10 * 60;
   updateTimeLeftTextContent();
+  resetTimer();
 });
 
 // Event listener for start/stop button
@@ -68,10 +73,10 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Event listener for reset button
-resetBtn.addEventListener('click', () => {
-  // Reset the timer
-  resetTimer();
-});
+// resetBtn.addEventListener('click', () => {
+//   // Reset the timer
+//   resetTimer();
+// });
 
 timerContainer.addEventListener('dblclick', () => {
   // Reset the timer
