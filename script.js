@@ -78,6 +78,15 @@ timerContainer.addEventListener('dblclick', () => {
   resetTimer();
 });
 
+// Add event listener for keyboard shortcuts
+document.addEventListener('keydown', (event) => {
+  // Check if Ctrl is held and Space is pressed for reset
+  if (event.ctrlKey && event.code === 'Space') {
+    event.preventDefault(); // Prevent default browser behavior
+    resetTimer();
+  }
+});
+
 // Event listener for settings button
 settingsBtn.addEventListener('click', () => {
   settingsModal.style.display = 'flex';
@@ -182,7 +191,7 @@ function resetTimer() {
   timeLeftEl.classList.add('fade-out');
 
   resetStartStopButtonState(); // Reset Start/Stop button
-  resetIntervalButtons(); // Reset all interval buttons to default state
+  // resetIntervalButtons(); // Reset all interval buttons to default state
 
   setTimeout(() => {
     // Update the timer value after fade-out
@@ -254,6 +263,9 @@ function applyUserPreferences() {
   //   button.style.backgroundColor = backgroundColor;
   //   button.style.borderColor = fontColor;
   // });
+
+  // Highlight the default interval button on page load
+  setActiveButton(pomodoroIntervalBtn);
 }
 
 // Apply user preferences on page load
