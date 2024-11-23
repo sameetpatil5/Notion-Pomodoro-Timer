@@ -69,20 +69,17 @@ document.addEventListener('keydown', (event) => {
 
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
-
   // Reset the timer
   resetTimer();
 });
 
 timerContainer.addEventListener('dblclick', () => {
-
   // Reset the timer
   resetTimer();
 });
 
 // Event listener for settings button
 settingsBtn.addEventListener('click', () => {
-  console.log('Settings button clicked');
   settingsModal.style.display = 'flex';
 });
 

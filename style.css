@@ -1,7 +1,9 @@
+/* Imports */
 @import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
+/* Global Styles */
 body {
   margin: 0;
   padding: 0;
@@ -10,6 +12,7 @@ body {
   overflow-y: hidden;
 }
 
+/* Container Styles */
 #pomodoro-container {
   display: flex;
   flex-direction: column;
@@ -36,7 +39,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,9 +58,10 @@ body {
   align-items: center;
 }
 
+/* Timer Styles */
 #timer-container {
   position: relative;
-  margin-top: 0.125rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,12 +71,28 @@ body {
   border-radius: 50px;
   transition: border-color 0.2s ease-in-out;
   overflow: hidden;
+  max-height: 180px;
+  padding: 0px 20px;
 }
 
 #timer-container:hover {
   border-color: black;
 }
 
+#time-left {
+  font-family: "Karla", sans-serif;
+  font-size: 10.375rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: -5px;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Ripple Effect */
 #ripple {
   position: absolute;
   top: 50%;
@@ -86,7 +106,6 @@ body {
   pointer-events: none;
 }
 
-/* Animation */
 @keyframes ripple-effect {
   0% {
     transform: scale(0);
@@ -104,7 +123,7 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
   }
   100% {
-  transform: scale(100);
+    transform: scale(100);
     opacity: 0;
     background-color: rgba(0, 0, 0, 0);
   }
@@ -114,30 +133,10 @@ body {
   animation: ripple-effect 2s ease-out;
 }
 
-#start-stop-reset-container {
-  margin-top: 0.125rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#time-left {
-  font-family: "Karla", sans-serif;
-  font-size: 10.375rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 1rem;
-  letter-spacing: -5px;
-  user-select: none;
-  position: relative;
-  z-index: 1; 
-  opacity: 1;
-}
-
-/* Timer Text Fade Animation */
+/* Fade Animations */
 @keyframes fade-out {
   0% {
-    opacity: 1; /* Fully visible */
+    opacity: 1;
   }
   100% {
     opacity: 0.4;
@@ -149,32 +148,22 @@ body {
     opacity: 0.6;
   }
   100% {
-    opacity: 1; /* Fully visible */
+    opacity: 1;
   }
 }
 
 #time-left.fade-out {
-  animation: fade-out 1.6s ease-out forwards; 
+  animation: fade-out 1.6s ease-out forwards;
 }
 
 #time-left.fade-in {
   animation: fade-in 0.4s ease-out forwards;
 }
 
+/* Button Styles */
 .interval-btn,
 #start-stop-btn,
-#reset-btn{
-  border-radius: 50px;
-  border: 1px solid black;
-  color: black;
-  font-family: "Rubik", sans-serif;
-  font-size: 1rem;
-  margin: 0.313rem;
-  padding: 0.313rem 0.5rem;
-  text-align: center;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
+#reset-btn,
 #settings-btn {
   border-radius: 50px;
   border: 1px solid black;
@@ -187,6 +176,9 @@ body {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
+.interval-btn:hover,
+#start-stop-btn:hover,
+#reset-btn:hover,
 #settings-btn:hover {
   background-color: black;
   color: white;
@@ -194,18 +186,10 @@ body {
   cursor: pointer;
 }
 
-.interval-btn:hover,
-#start-stop-btn:hover,
-#reset-btn:hover {
-  background-color: black;
-  color: white;
-  border-color: black;
-  cursor: pointer;
-}
-
+/* Modal Styles */
 #settings-modal {
   z-index: 1;
-  font-family: Rubik;
+  font-family: "Rubik";
   display: none;
   align-items: center;
   justify-content: center;
@@ -218,15 +202,17 @@ body {
 }
 
 .modal-content {
-  width:300px;
-  font-family:Rubik;
-  color:black;
+  width: 60%;
+  max-width: 400px;
+  font-family: "Rubik";
+  color: black;
   align-items: center;
   justify-content: center;
   background-color: #f7f6f3;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  position: relative;
 }
 
 .close-btn {
@@ -237,31 +223,31 @@ body {
   cursor: pointer;
 }
 
+/* Setting Styles */
 .setting-option {
   align-items: center;
-  font-family: Rubik;
+  font-family: "Rubik";
   margin-bottom: 10px;
 }
 
 .setting-wrapper {
-  text-align:center;
-  flex-direction:column;
-  display:flex;
-  align-items:center;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
 }
 
-
 .setting-option label {
-  text-align:center;
-  align-items:center;
-  font-family: Rubik;
+  text-align: center;
+  align-items: center;
+  font-family: "Rubik";
   margin-right: 10px;
 }
 
 #save-btn {
-  margin-top:10px;
-  width:60%;
-  font-family:Rubik;
+  margin-top: 10px;
+  width: 60%;
+  font-family: "Rubik";
   background-color: black;
   color: #fff;
   border: none;
@@ -269,31 +255,24 @@ body {
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  
 }
-
 
 #save-btn:hover {
   background-color: grey;
-  color:white;
-  width:60
-}
-
-/* Active (Clicked) State for Interval Buttons */
-.interval-btn.active, 
-#start-stop-btn.active {
-  background-color: grey;  /* Change background color on click */
   color: white;
-  border-color: grey;  /* Change border color on click */
 }
 
-#option{
-  font-family:Rubik;
-  
+/* Active States */
+.interval-btn.active,
+#start-stop-btn.active {
+  background-color: grey;
+  color: white;
+  border-color: grey;
 }
 
+/* Miscellaneous */
 button {
-  pointer-events: auto;  
+  pointer-events: auto;
 }
 
 select {
