@@ -19,14 +19,14 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 1.1rem;
   box-sizing: border-box;
   position: relative;
 }
 
-#interval-setting-container {
+#interval-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@ body {
   position: relative;
 }
 
-#interval-container {
+#interval-btn-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,16 +46,6 @@ body {
   flex-wrap: wrap;
   flex-grow: 1;
   text-align: center;
-}
-
-#settings-container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 #start-stop-option-container {
@@ -193,11 +183,21 @@ body {
 }
 
 /* Button Styles */
+.round-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.round-btn:hover {
+  transform: scale(1.03);
+}
+
 .interval-btn,
 #start-stop-btn,
 #reset-btn,
 #settings-btn,
-#option-btn {
+#option-btn,
+#help-btn {
   border-radius: 50px;
   border: 1px solid black;
   color: black;
@@ -213,7 +213,8 @@ body {
 #start-stop-btn:hover,
 #reset-btn:hover,
 #settings-btn:hover,
-#option-btn:hover {
+#option-btn:hover,
+#help-btn:hover {
   background-color: black;
   color: white;
   border-color: black;
@@ -255,6 +256,22 @@ body {
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+}
+
+#option-modal {
+  position: absolute;
+  bottom: 45px;
+  flex-direction: column;
+  align-items: flex-end;
+  visibility: hidden;
+  right: 0;
+  opacity: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#option-modal.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Setting Styles */
@@ -303,6 +320,8 @@ body {
   color: white;
   border-color: grey;
 }
+
+
 
 /* Miscellaneous */
 button {

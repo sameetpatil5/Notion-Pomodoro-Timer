@@ -13,14 +13,11 @@
 
 <body>
   <div id="pomodoro-container">
-    <div id="interval-setting-container">
-      <div id="interval-container">
+    <div id="interval-container">
+      <div id="interval-btn-container">
         <button id="pomodoro-interval-btn" class="interval-btn">Focus</button>
         <button id="short-break-interval-btn" class="interval-btn">Short Break</button>
         <button id="long-break-interval-btn" class="interval-btn">Long Break</button>
-      </div>
-      <div id="settings-container">
-        <button id="settings-btn"><i class="fas fa-cog"></i></button>
       </div>
     </div>
     <div id="timer-container">
@@ -30,10 +27,14 @@
     <div id="start-stop-option-container">
       <div id="start-stop-container">
         <button id="start-stop-btn">Start</button>
-        <!-- <button id="reset-btn"><i class="fas fa-redo-alt"></i></button> -->
       </div>
       <div id="option-container">
-        <button id="option-btn"><i class="fas fa-o"></i></button>
+        <button id="option-btn" class="round-btn"><i class="fas fa-o"></i></button>
+        <div id="option-modal">
+          <button id="help-btn" class="round-btn"><i class="fas fa-question"></i></button>
+          <button id="reset-btn" class="round-btn"><i class="fas fa-redo-alt"></i></button>
+          <button id="settings-btn" class="round-btn"><i class="fas fa-cog"></i></button>
+        </div>
       </div>
     </div>
   </div>

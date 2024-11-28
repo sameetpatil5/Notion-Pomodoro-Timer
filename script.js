@@ -8,7 +8,7 @@ let fontColor = '#37352F'; // Default font color
 // DOM elements
 const timeLeftEl = document.getElementById('time-left');
 const startStopBtn = document.getElementById('start-stop-btn');
-// const resetBtn = document.getElementById('reset-btn');
+const resetBtn = document.getElementById('reset-btn');
 const pomodoroIntervalBtn = document.getElementById('pomodoro-interval-btn');
 const shortBreakIntervalBtn = document.getElementById('short-break-interval-btn');
 const longBreakIntervalBtn = document.getElementById('long-break-interval-btn');
@@ -21,7 +21,23 @@ const saveBtn = document.getElementById('save-btn');
 const timerContainer = document.getElementById('timer-container');
 const ripple = document.getElementById('ripple');
 const optionBtn = document.getElementById('option-btn');
-const optionsCollapse = document.getElementById('options-collapse');
+const optionModal = document.getElementById('option-modal');
+
+// Event listener for option button
+optionBtn.addEventListener('click', () => {
+  optionBtn.classList.toggle('expanded'); // Toggle expanded class
+  const icon = optionBtn.querySelector('i');
+
+  if (icon.classList.contains('fa-o')) {
+    icon.classList.replace('fa-o', 'fa-times');
+    optionModal.classList.add('show'); // Add class to show modal
+    console.log("Option button is pressed");
+  } else {
+    icon.classList.replace('fa-times', 'fa-o');
+    optionModal.classList.remove('show'); // Remove class to hide modal
+    console.log("Close button is pressed");
+  }
+});
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
@@ -73,10 +89,10 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Event listener for reset button
-// resetBtn.addEventListener('click', () => {
-//   // Reset the timer
-//   resetTimer();
-// });
+resetBtn.addEventListener('click', () => {
+  // Reset the timer
+  resetTimer();
+});
 
 timerContainer.addEventListener('dblclick', () => {
   // Reset the timer
