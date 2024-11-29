@@ -241,16 +241,21 @@ body {
   max-width: 400px;
   font-family: "Rubik";
   color: black;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #f7f6f3;
-  padding: 30px;
+  padding: 20px 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   position: relative;
 }
 
 .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
   color: #000;
   float: right;
   font-size: 30px;
@@ -274,8 +279,19 @@ body {
   opacity: 1;
 }
 
+#total-pomodoro-time {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 100px;
+  margin-left: 10px;
+}
+
 /* Setting Styles */
 .setting-option {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   font-family: "Rubik";
   margin-bottom: 10px;
@@ -284,15 +300,40 @@ body {
 .setting-wrapper {
   text-align: center;
   flex-direction: column;
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
 }
 
 .setting-option label {
-  text-align: center;
+  flex: 1;
+  text-align: left;
   align-items: center;
   font-family: "Rubik";
   margin-right: 10px;
+}
+
+.setting-option input[type="number"] {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 50px;
+  margin-left: 10px;
+}
+
+.setting-option select {
+  flex: 1;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  max-width: 160px;
+  margin-left: 10px;
 }
 
 #save-btn {
@@ -320,8 +361,6 @@ body {
   color: white;
   border-color: grey;
 }
-
-
 
 /* Miscellaneous */
 button {

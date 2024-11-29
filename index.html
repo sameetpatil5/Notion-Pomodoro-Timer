@@ -43,10 +43,38 @@
   <div id="settings-modal" class="modal">
     <div class="modal-content">
       <span class="close-btn">&times;</span>
+      <h3>Settings</h3>
       <div class="setting-wrapper">
-        <h3>Settings</h3>
+        <div id="interval-settings">
+          <!-- Custom Interval Settings -->
+          <!-- <div class="setting-wrapper"> -->
+          <div class="setting-option">
+            <label for="focus-interval">Focus Time (minutes):</label>
+            <input type="number" id="focus-interval" value="25" min="1" max="60" />
+          </div>
+          <div class="setting-option">
+            <label for="short-break-interval">Short Break Time (minutes):</label>
+            <input type="number" id="short-break-interval" value="5" min="1" max="30" />
+          </div>
+          <div class="setting-option">
+            <label for="long-break-interval">Long Break Time (minutes):</label>
+            <input type="number" id="long-break-interval" value="15" min="1" max="60" />
+            <!-- </div> -->
+          </div>
+          <!-- Focus and Short Break Count -->
+          <div class="setting-option">
+            <label for="focus-count">Number of Focus Intervals Before Long Break:</label>
+            <input type="number" id="focus-count" value="4" min="1" max="10" />
+          </div>
+          <!-- set total time for Pomodoro -->
+          <div class="setting-option">
+            <label for="total-pomodoro-time">Total Pomodoro Time (minutes):</label>
+            <input type="number" id="total-pomodoro-time" placeholder="Optional" />
+          </div>
+        </div>
+        <!-- background color and font color -->
         <div class="setting-option">
-          <label for="background-color">Choose the Background Color</label>
+          <label for="background-color">Background Color</label>
           <select id="background-color">
             <option value="#FFFFFF">LM Default White</option>
             <option value="#F7F6F3">LM Off White</option>
@@ -74,7 +102,7 @@
           </select>
         </div>
         <div class="setting-option">
-          <label for="font-color">Choose the Font Color</label>
+          <label for="font-color">Font Color</label>
           <select id="font-color">
             <option value="#37352F">LM Notion Default</option>
             <option value="#787774">LM Notion Grey</option>
@@ -98,8 +126,8 @@
             <option value="#E255A1">DM Notion Pink</option>
             <option value="#FF7369">DM Notion Red</option>
           </select>
-          <button id="save-btn">Save</button>
         </div>
+        <button id="save-btn">Save</button>
       </div>
     </div>
   </div>
