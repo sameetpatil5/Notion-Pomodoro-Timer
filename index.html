@@ -44,10 +44,18 @@
     <div class="modal-content">
       <span class="close-btn">&times;</span>
       <h3>Settings</h3>
-      <div class="setting-wrapper">
+
+      <!-- Tab Navigation -->
+      <div id="setting-tabs" class="tabs">
+        <button class="tab-button active" data-tab="pomodoro-settings">Pomodoro Settings</button>
+        <button class="tab-button" data-tab="ui-settings">UI Settings</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div id="pomodoro-settings" class="tab-content active">
+
         <div id="interval-settings">
-          <!-- Custom Interval Settings -->
-          <!-- <div class="setting-wrapper"> -->
+          <!-- Pomodoro Settings -->
           <div class="setting-option">
             <label for="focus-interval">Focus Time (minutes):</label>
             <input type="number" id="focus-interval" value="25" min="1" max="60" />
@@ -59,20 +67,20 @@
           <div class="setting-option">
             <label for="long-break-interval">Long Break Time (minutes):</label>
             <input type="number" id="long-break-interval" value="15" min="1" max="60" />
-            <!-- </div> -->
           </div>
-          <!-- Focus and Short Break Count -->
           <div class="setting-option">
             <label for="focus-count">Number of Focus Intervals Before Long Break:</label>
             <input type="number" id="focus-count" value="4" min="1" max="10" />
           </div>
-          <!-- set total time for Pomodoro -->
           <div class="setting-option">
             <label for="total-pomodoro-time">Total Pomodoro Time (minutes):</label>
             <input type="number" id="total-pomodoro-time" placeholder="Optional" />
           </div>
         </div>
-        <!-- background color and font color -->
+      </div>
+
+      <div id="ui-settings" class="tab-content">
+        <!-- UI Settings -->
         <div class="setting-option">
           <label for="background-color">Background Color</label>
           <select id="background-color">
@@ -127,10 +135,18 @@
             <option value="#FF7369">DM Notion Red</option>
           </select>
         </div>
-        <button id="save-btn">Save</button>
+        <div class="setting-option">
+          <label for="font">Font</label>
+          <select id="font">
+            <option value="sm">font 1</option>
+            <option value="md">font 2</option>
+          </select>
+        </div>
       </div>
+      <button id="save-btn">Save</button>
     </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>

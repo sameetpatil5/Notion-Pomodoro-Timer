@@ -183,6 +183,52 @@ body {
 }
 
 /* Button Styles */
+
+/* Tab Navigation */
+
+#setting-tabs {
+  display: flex;
+  width: 90%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f7f6f3;
+  border: none;
+  border-radius: 5px;
+  /* border: 1px solid black; */
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease-in-out;
+}
+
+.tab-button.active {
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.tab-content.active {
+  display: block;
+}
+
 .round-btn {
   width: 2.2rem;
   height: 2.2rem;
@@ -246,10 +292,12 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #f7f6f3;
-  padding: 20px 30px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .close-btn {
@@ -294,7 +342,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-family: "Rubik";
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .setting-wrapper {
