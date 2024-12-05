@@ -79,13 +79,8 @@ const longBreakIntervalBtn = document.getElementById('long-break-interval-btn');
 const startStopBtn = document.getElementById('start-stop-btn');
 const resetBtn = document.getElementById('reset-btn');
 const settingsBtn = document.getElementById('settings-btn');
-const settingsModal = document.getElementById('settings-modal');
-const closeModalBtn = document.querySelector('.close-btn');
-const backgroundColorSelect = document.getElementById('background-color');
-const fontColorSelect = document.getElementById('font-color');
+const closeModalBtn = document.querySelectorAll('.close-btn');
 const saveBtn = document.getElementById('save-btn');
-const timerContainer = document.getElementById('timer-container');
-const ripple = document.getElementById('ripple');
 const optionBtn = document.getElementById('option-btn');
 const helpBtn = document.getElementById("help-btn");
 
@@ -143,7 +138,7 @@ startStopBtn.addEventListener('click', () => {
   toggleStartStop();
 });
 
-// Event listener for keydown space bar event to toggle start/stop
+// Event listener for start/stop button using keyboard shortcuts [:Space]
 document.addEventListener('keydown', (event) => {
   // Check if the space bar was pressed
   if (event.code === 'Space') {
@@ -156,22 +151,18 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Event listener for reset button
-resetBtn.addEventListener('click', () => {
-  // Reset the timer
-  resetTimer();
+// Event listener to Reset the Timer on double click [:dblclick]
+window.addEventListener('dblclick', (event) => {
+  const timerContainer = document.getElementById('timer-container');
+  if (timerContainer.contains(event.target)) {
+    resetTimer();
+  }
 });
 
-timerContainer.addEventListener('dblclick', () => {
-  // Reset the timer
-  resetTimer();
-});
-
-// Add event listener for keyboard shortcuts
+// Add event listener to reset timer using keyboard shortcuts [:ctrl + Space]
 document.addEventListener('keydown', (event) => {
-  // Check if Ctrl is held and Space is pressed for reset
   if (event.ctrlKey && event.code === 'Space') {
-    event.preventDefault(); // Prevent default browser behavior
+    event.preventDefault(); 
     resetTimer();
   }
 });
@@ -336,9 +327,9 @@ saveBtn.addEventListener('click', (event) => {
     const newHideFootnote = document.getElementById('hide-footnote').checked ? 'true' : 'false';
 
     // Save new UI settings to localStorage
-  localStorage.setItem('backgroundColor', newBackgroundColor);
-  localStorage.setItem('fontColor', newFontColor);
-localStorage.setItem('font', newFont);
+    localStorage.setItem('backgroundColor', newBackgroundColor);
+    localStorage.setItem('fontColor', newFontColor);
+    localStorage.setItem('font', newFont);
     localStorage.setItem('darkMode', newDarkMode);
     localStorage.setItem('hideFootnote', newHideFootnote);
 
@@ -355,26 +346,26 @@ localStorage.setItem('font', newFont);
     updateUISettings();
 
     // Apply the new preferences
-  applyUserPreferences();
-} catch (error) {
+    applyUserPreferences();
+  } catch (error) {
     console.error('Error saving preferences:', error);
   } finally {
     // Close the settings modal
     toggleModal(settingsModal, settingsBtn, 'close');
-}
+  }
 });
 
 // Funtions
 
 // Function to start the timer
 function startTimer() {
-setStartStopButtonState();
+  setStartStopButtonState();
 
   if (timerInterval) return; 
   timerInterval = setInterval(() => {
-if (timeLeft > 0) {
-    timeLeft--;
-    updateTimeLeftTextContent();
+    if (timeLeft > 0) {
+      timeLeft--;
+      updateTimeLeftTextContent();
     } else {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -385,11 +376,11 @@ if (timeLeft > 0) {
 
 // Function to stop the timer
 function stopTimer() {
-resetStartStopButtonState();
+  resetStartStopButtonState();
 
   if (timerInterval) {
-  clearInterval(timerInterval);
-  timerInterval = null;
+    clearInterval(timerInterval);
+    timerInterval = null;
   }
 }
 
@@ -434,9 +425,6 @@ function resetTimer() {
   // Add fade-out animation to text
   timeLeftEl.classList.add('fade-out');
 
-  resetStartStopButtonState(); // Reset Start/Stop button
-  // resetIntervalButtons(); // Reset all interval buttons to default state
-
   setTimeout(() => {
     // Update the timer value after fade-out
     // Update the timer based on the current interval
@@ -470,14 +458,14 @@ function resetStartStopButtonState() {
 function toggleStartStop() {
   if (startStopBtn.textContent === 'Start') {
     startTimer();  // Start the timer
-// startStopBtn.textContent = 'Stop';
-// startStopBtn.classList.add('active');
-setStartStopButtonState();
+    // startStopBtn.textContent = 'Stop';
+    // startStopBtn.classList.add('active');
+    setStartStopButtonState();
   } else {
     stopTimer();  // Stop the timer
-// startStopBtn.textContent = 'Start';
-// startStopBtn.classList.remove('active');
-resetStartStopButtonState();
+    // startStopBtn.textContent = 'Start';
+    // startStopBtn.classList.remove('active');
+    resetStartStopButtonState();
   }
 }
 
@@ -546,34 +534,22 @@ function applyPreferences() {
 
 // Function to apply the user's saved preferences
 function applyUserPreferences() {
-  // Retrieve user preferences from localStorage
-//   const savedBackgroundColor = localStorage.getItem('backgroundColor');
-//   const savedFontColor = localStorage.getItem('fontColor');
-
-  // Apply the preferences if they exist in localStorage
-//   if (savedBackgroundColor) {
-//       backgroundColor = savedBackgroundColor;
-//   }
-
-//   if (savedFontColor) {
-//       fontColor = savedFontColor;
-//   }
 
   // Apply the UI preferences
   document.body.style.backgroundColor = uiSettings.backgroundColor;
   document.body.style.color = uiSettings.fontColor;
-//   timeLeftEl.style.color = fontColor;
+  // timeLeftEl.style.color = fontColor;
   // Update the buttons' font and background color
   const buttons = document.querySelectorAll('.interval-btn, #start-stop-btn, #option-btn, #settings-btn, #reset-btn, #help-btn');
   // TODO: fix the buttons
   buttons.forEach((button) => {
-  button.style.color = fontColor;
-  button.style.backgroundColor = backgroundColor;
-  button.style.borderColor = fontColor;
+    button.style.color = fontColor;
+    button.style.backgroundColor = backgroundColor;
+    button.style.borderColor = fontColor;
   });
 
   // Highlight the default interval button on page load
-// setActiveButton(pomodoroIntervalBtn);
+  // setActiveButton(pomodoroIntervalBtn);
   initializeTimer();
 }
 
@@ -644,8 +620,8 @@ function initializeTimer() {
     setActiveButton(longBreakIntervalBtn);
     timeLeft = pomodoroSettings.longBreak * 60;
   } else if (currentInterval === 'pomodoro') {
-  setActiveButton(pomodoroIntervalBtn);
-timeLeft = pomodoroSettings.focus * 60;
+    setActiveButton(pomodoroIntervalBtn);
+    timeLeft = pomodoroSettings.focus * 60;
   }
 
   updateTimeLeftTextContent();
