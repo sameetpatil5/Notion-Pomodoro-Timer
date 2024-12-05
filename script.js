@@ -121,12 +121,31 @@ window.addEventListener('click', (event) => {
   }
 });
 
-// Event listener for save button in the settings modal
-saveBtn.addEventListener('click', () => {
-  const newBackgroundColor = backgroundColorSelect.value;
-  const newFontColor = fontColorSelect.value;
+// Event listener for dark mode toggle to filter Background color and Font color options
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeToggle = document.getElementById('dark-mode');
 
-  // Save preferences to localStorage
+  const filterOptions = () => {
+    const isDarkMode = darkModeToggle.checked;
+    const theme = isDarkMode ? 'dark' : 'light';
+
+    // Filter background color options
+    [...document.getElementById('background-color').options].forEach(option => {
+      option.style.display = option.dataset.theme === theme ? 'block' : 'none';
+    });
+
+    // Filter font color options
+    [...document.getElementById('font-color').options].forEach(option => {
+      option.style.display = option.dataset.theme === theme ? 'block' : 'none';
+    });
+  };
+
+  // Initial filter
+  filterOptions();
+
+  // Update options when toggle changes
+  darkModeToggle.addEventListener('change', filterOptions);
+});
   localStorage.setItem('backgroundColor', newBackgroundColor);
   localStorage.setItem('fontColor', newFontColor);
 
