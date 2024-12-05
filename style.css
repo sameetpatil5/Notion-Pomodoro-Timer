@@ -406,6 +406,90 @@ body {
   margin-left: 10px;
 }
 
+/* Settings Tab Navigation Styles */
+#setting-tabs {
+  display: flex;
+  width: 90%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f7f6f3;
+  border: none;
+  border-radius: 5px;
+  /* border: 1px solid black; */
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease-in-out;
+}
+
+.tab-button.active {
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+}
+
+/* Settings Tab Content */
+.tab-content {
+  display: none;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Button Styles */
+
+/* Interval Buttons, Start/Stop Button, and Option Button */
+.interval-btn,
+#start-stop-btn,
+#option-btn {
+  border-radius: 50px;
+  border: 1px solid black;
+  color: black;
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  margin: 0.313rem;
+  padding: 0.313rem 0.5rem;
+  text-align: center;
+  transition: background 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Help Button, Reset Button, and Settings Button */
+#help-btn,
+#reset-btn,
+#settings-btn {
+  border-radius: 50px;
+  border: 1px solid black;
+  color: black;
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  margin: 0.313rem;
+  padding: 0.313rem 0.5rem;
+  text-align: center;
+  transition: background 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Option Button, Settings Button, Reset Button and Help Button Round Effect */
+.round-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* Save Button */
 #save-btn {
   margin-top: 10px;
   width: 60%;
@@ -419,9 +503,30 @@ body {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#save-btn:hover {
-  background-color: grey;
-  color: white;
+/* Close Button Styles & Effects */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #000;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: transform 0.2s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+  transform: scale(1.1); 
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn:active {
+  transform: scale(0.95);
+  text-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); 
 }
 
 .toggle-switch {
@@ -472,13 +577,92 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* Active States */
-.interval-btn.active,
-#start-stop-btn.active {
+/* Button Effects */
+
+/* Button Hover Effects */
+#reset-btn:hover,
+#settings-btn:hover,
+#option-btn:hover,
+#help-btn:hover,
+.interval-btn:not(.active):hover,
+#start-stop-btn:not(.active):hover {
+  background: linear-gradient(135deg, #4a4a4a, #1a1a1a);
+  color: white;
+  border-color: black;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: background 0.4s ease-in-out 0.1s, transform 0.2s ease-in-out;
+}
+
+/* Save Button Hover Effects */
+#save-btn:hover {
   background-color: grey;
   color: white;
-  border-color: grey;
+  }
+
+/* Button Press down/ Active Effects */
+#help-btn:active,
+#settings-btn:active,
+#option-btn:active,
+#reset-btn:active {
+  transform: scale(0.95); /* Button "presses" down */
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); /* Creates a pressed effect */
+  background-color: #333; /* Optional: Darken the background */
+  color: white; /* Keep text color visible */
 }
+
+/* Active State Button Effects */
+.interval-btn.active,
+#start-stop-btn.active,
+#option-btn.active,
+#settings-btn.active,
+#help-btn.active,
+#help-btn.active {
+  background: linear-gradient(135deg, #4a4a4a, #1a1a1a);
+  color: #f7f6f3;
+  border-color: #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Active state Button Hover Effects */
+.interval-btn.active:hover,
+#start-stop-btn.active:hover,
+#option-btn.active:hover {
+  background: linear-gradient(135deg, #5a5a5a, #2a2a2a); /* Lighter gradient for hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+  transform: scale(1.05); /* Slightly more scaling on hover */
+}
+
+/* Button Focus/Keyboard Navigation Effects */
+#start-stop-btn:focus-visible,
+#option-btn:focus-visible,
+#settings-btn:focus-visible,
+#reset-btn:focus-visible,
+#help-btn:focus-visible,
+button:focus-visible {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 0 0 6px rgba(0, 0, 0, 0.1); /* Soft glow */
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Optional thin border */
+  border-radius: 50px;
+  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Active state Button Focus/Keyboard Navigation Effects */
+#start-stop-btn.active:focus-visible,
+button.active:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 0 0 6px rgba(0, 0, 0, 0.1); /* Soft glow */
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Optional thin border */
+  border-radius: 50px;
+  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Miscellaneous Styles */
 
 /* Footnote Styles */
 .foot-note {
@@ -490,10 +674,18 @@ input:checked + .slider:before {
 .profile {
   color: black;
 }
+
+/* (all) Button Pointer Styles */
 button {
-  pointer-events: auto;
+  pointer-events:auto;
 }
 
+/* (all) Button Focus/Keyboard Navigation Effects */
+button:focus {
+  outline: none;
+}
+
+/* Custom Select Styles */
 select {
   appearance: none;
   background-color: transparent;
