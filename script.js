@@ -262,42 +262,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update options when toggle changes
   darkModeToggle.addEventListener('change', filterOptions);
 });
+
+// Event listener for save button to save preferences
+saveBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  try {
+    // Retrieve new UI preferences from input fields or selectors
+    const newBackgroundColor = document.getElementById('background-color').value;
+    const newFontColor = document.getElementById('font-color').value;
+    const newFont = document.getElementById('font').value;
+    const newDarkMode = document.getElementById('dark-mode').checked ? 'true' : 'false';
+    const newHideFootnote = document.getElementById('hide-footnote').checked ? 'true' : 'false';
+
+    // Save new UI settings to localStorage
   localStorage.setItem('backgroundColor', newBackgroundColor);
   localStorage.setItem('fontColor', newFontColor);
+localStorage.setItem('font', newFont);
+    localStorage.setItem('darkMode', newDarkMode);
+    localStorage.setItem('hideFootnote', newHideFootnote);
 
-  // Apply the new saved preferences
+    // Retrieve new Pomodoro settings from input fields
+    const newFocusInterval = parseInt(document.getElementById('focus-interval').value, 10);
+    const newShortBreakInterval = parseInt(document.getElementById('short-break-interval').value, 10);
+    const newLongBreakInterval = parseInt(document.getElementById('long-break-interval').value, 10);
+    const newFocusCount = parseInt(document.getElementById('focus-count').value, 10);
+    const newSessionCount = parseInt(document.getElementById('session-count').value, 10);
+    const newAutoStart = document.getElementById('auto-start').checked ? 'true' : 'false';
+
+    // Apply the new settings to the timer
+    updatePomodoroSettings(newFocusInterval, newShortBreakInterval, newLongBreakInterval, newFocusCount, newSessionCount, newAutoStart);
+    updateUISettings();
+
+    // Apply the new preferences
   applyUserPreferences();
-
-  // Close the modal after saving preferences
-  settingsModal.style.display = 'none';
+} catch (error) {
+    console.error('Error saving preferences:', error);
+  } finally {
+    // Close the settings modal
+    toggleModal(settingsModal, settingsBtn, 'close');
+}
 });
 
-// Function to set an interval button as active and reset the others
-function setActiveButton(activeButton) {
-  // Remove the 'active' class from all interval buttons
-  const intervalButtons = [pomodoroIntervalBtn, shortBreakIntervalBtn, longBreakIntervalBtn];
-  intervalButtons.forEach((btn) => btn.classList.remove('active'));
-
-  // Add the 'active' class to the clicked button
-  activeButton.classList.add('active');
-}
-
-// Function to reset all interval buttons to their default color
-function resetIntervalButtons() {
-  const intervalButtons = [pomodoroIntervalBtn, shortBreakIntervalBtn, longBreakIntervalBtn];
-  intervalButtons.forEach((btn) => btn.classList.remove('active'));
-}
-
-// Function to change the start/stop button state
-function setStartStopButtonState() {
-  // Toggle the active state on the start/stop button
-  startStopBtn.classList.toggle('active');
-}
-
-// Function to reset the start/stop button state
-function resetStartStopButtonState() {
-  startStopBtn.classList.remove('active');
-}
+// Funtions
 
 // Function to start the timer
 function startTimer() {
@@ -436,6 +442,14 @@ function updateTimeLeftTextContent() {
   const seconds = timeLeft % 60;
   timeLeftEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
+
+// Function to hide the tooltip
+function hideTooltip() {
+    setTimeout(() => {
+        bootstrap.Tooltip.getInstance('#option-btn').hide();
+    }, 100);
+}
+
 // Function to toggle modal visibility on close button click and outside window click
 function toggleModal(modal, button, action = 'toggle') {
   const isActive = modal.style.display === 'flex';
