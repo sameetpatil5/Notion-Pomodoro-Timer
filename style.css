@@ -13,6 +13,8 @@ body {
 }
 
 /* Container Styles */
+
+/* Main/Pomodoro Container */
 #pomodoro-container {
   display: flex;
   flex-direction: column;
@@ -26,6 +28,7 @@ body {
   position: relative;
 }
 
+/* Interval Container */
 #interval-container {
   display: flex;
   justify-content: center;
@@ -35,6 +38,7 @@ body {
   position: relative;
 }
 
+/* Interval Buttons Container */
 #interval-btn-container {
   position: absolute;
   top: 50%;
@@ -48,38 +52,7 @@ body {
   text-align: center;
 }
 
-#start-stop-option-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  position: relative;
-}
-
-#start-stop-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  text-align: center;
-}
-
-#option-container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-/* Timer Styles */
+/* Timer Container */
 #timer-container {
   position: relative;
   margin: 0.5rem;
@@ -96,175 +69,45 @@ body {
   padding: 0px 20px;
 }
 
-#timer-container:hover {
-  border-color: black;
-}
-
-#time-left {
-  font-family: "Karla", sans-serif;
-  font-variant-numeric: tabular-nums; /* by https://stackoverflow.com/users/1913729/blex*/
-  font-size: 10.375rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 1rem;
-  letter-spacing: -5px;
-  user-select: none;
+/* Start/Stop and Options Container */
+#start-stop-option-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
   position: relative;
-  z-index: 1;
-  opacity: 1;
 }
 
-/* Ripple Effect */
-#ripple {
+/* Start/Stop Container */
+#start-stop-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  transform: scale(0);
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes ripple-effect {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  20% {
-    transform: scale(20);
-    opacity: 0.5;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  60% {
-    transform: scale(40);
-    opacity: 0.2;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  100% {
-    transform: scale(100);
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0); 
-  }
-}
-
-#ripple.animate {
-  animation: ripple-effect 2s ease-out;
-}
-
-/* Fade Animations */
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.4;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-#time-left.fade-out {
-  animation: fade-out 1.6s ease-out forwards;
-}
-
-#time-left.fade-in {
-  animation: fade-in 0.4s ease-out forwards;
-}
-
-/* Button Styles */
-
-/* Tab Navigation */
-
-#setting-tabs {
+  transform: translate(-50%, -50%);
   display: flex;
-  width: 90%;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
 }
 
-.tabs {
+/* Option Container */
+#option-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-
-.tab-button {
-  flex: 1;
-  padding: 10px 0;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #f7f6f3;
-  border: none;
-  border-radius: 5px;
-  /* border: 1px solid black; */
-  border-bottom: 2px solid transparent;
-  transition: border-bottom-color 0.2s ease-in-out;
-}
-
-.tab-button.active {
-  border-bottom: 2px solid #000;
-  font-weight: bold;
-}
-
-/* Tab Content */
-.tab-content {
-  display: none;
-  margin: 0;
-  width: 100%;
-  box-sizing: border-box;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.tab-content.active {
-  display: block;
-}
+/* Container Effects */
 
-.round-btn {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
-.round-btn:hover {
-  transform: scale(1.03);
-}
-
-.interval-btn,
-#start-stop-btn,
-#reset-btn,
-#settings-btn,
-#option-btn,
-#help-btn {
-  border-radius: 50px;
-  border: 1px solid black;
-  color: black;
-  font-family: "Rubik", sans-serif;
-  font-size: 1rem;
-  margin: 0.313rem;
-  padding: 0.313rem 0.5rem;
-  text-align: center;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-.interval-btn:hover,
-#start-stop-btn:hover,
-#reset-btn:hover,
-#settings-btn:hover,
-#option-btn:hover,
-#help-btn:hover {
-  background-color: black;
-  color: white;
+/* Timer Container Hover Effect */
+#timer-container:hover {
   border-color: black;
-  cursor: pointer;
 }
 
 /* Modal Styles */
@@ -365,14 +208,6 @@ body {
   align-items: center;
   font-family: "Rubik";
   margin-bottom: 15px;
-}
-
-.setting-wrapper {
-  text-align: center;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  gap: 20px;
 }
 
 .setting-option label {
@@ -529,6 +364,7 @@ body {
   text-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); 
 }
 
+/* Toggle Switch Button Styles & Effects */
 .toggle-switch {
     position: relative;
     display: inline-block;
@@ -559,6 +395,7 @@ body {
   border-radius: 20px;
   max-width: 40px;
 }
+
 .slider:before {
   position: absolute;
   content: "";
@@ -570,9 +407,11 @@ body {
   transition: 0.4s;
   border-radius: 50%;
 }
+
 input:checked + .slider {
   background-color: #010101;
 }
+
 input:checked + .slider:before {
   transform: translateX(20px);
 }
@@ -599,7 +438,7 @@ input:checked + .slider:before {
 #save-btn:hover {
   background-color: grey;
   color: white;
-  }
+}
 
 /* Button Press down/ Active Effects */
 #help-btn:active,
@@ -676,7 +515,7 @@ button.active:focus-visible {
 }
 
 /* (all) Button Pointer Styles */
-button {
+button {    
   pointer-events:auto;
 }
 
@@ -697,4 +536,88 @@ select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
+}
+
+#time-left {
+  font-family: "Karla", sans-serif;
+  font-variant-numeric: tabular-nums; 
+  font-size: 10.375rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: -5px;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Animation Styles */
+
+/* Ripple Effect/ Timer Reset Effect */
+#ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  20% {
+    transform: scale(20);
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  60% {
+    transform: scale(40);
+    opacity: 0.2;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  100% {
+    transform: scale(100);
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0); 
+  }
+}
+
+#ripple.animate {
+  animation: ripple-effect 2s ease-out;
+}
+
+/* Timer Fade Animations on Reset */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#time-left.fade-out {
+  animation: fade-out 1.6s ease-out forwards;
+}
+
+#time-left.fade-in {
+  animation: fade-in 0.4s ease-out forwards;
 }
