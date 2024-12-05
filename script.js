@@ -22,6 +22,8 @@ const timerContainer = document.getElementById('timer-container');
 const ripple = document.getElementById('ripple');
 const optionBtn = document.getElementById('option-btn');
 const optionModal = document.getElementById('option-modal');
+// Miscallaneous elements
+const HideFootNote = document.getElementById('hide-footnote');
 
 // Initialize bootstrap tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
