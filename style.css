@@ -268,6 +268,8 @@ body {
 }
 
 /* Modal Styles */
+
+/* Settings Modal */
 #settings-modal {
   z-index: 1;
   font-family: "Rubik";
@@ -282,6 +284,44 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Option Modal */
+#option-modal {
+  position: absolute;
+  bottom: 45px;
+  flex-direction: column;
+  align-items: flex-end;
+  visibility: hidden;
+  right: 0;
+  opacity: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Help Modal */
+#help-modal {
+  z-index: 1;
+  font-family: "Rubik";
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Effects */
+
+/* Option Modal Effects */
+#option-modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal Content Styles */
+
+/* Settings & Help Modal Content Styles */
 .modal-content {
   width: 60%;
   max-width: 400px;
@@ -300,43 +340,24 @@ body {
   box-sizing: border-box;
 }
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #000;
-  float: right;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#option-modal {
-  position: absolute;
-  bottom: 45px;
-  flex-direction: column;
-  align-items: flex-end;
-  visibility: hidden;
-  right: 0;
-  opacity: 0;
-  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-#option-modal.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-#total-pomodoro-time {
-  padding: 5px;
+/* Help Modal Content Styles */
+.help-content {
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  max-width: 100px;
-  margin-left: 10px;
+  line-height: 1.5;
 }
 
-/* Setting Styles */
+.help-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.help-content ul li {
+  margin: 5px 0;
+}
+
+/* Settings Styles */
+
+/* Settings Option Styles */
 .setting-option {
   position: relative;
   display: flex;

@@ -1,17 +1,25 @@
 // Global variables
-let timeLeft = 25 * 60; // seconds
+let timeLeft;
 let timerInterval;
 let currentInterval = 'pomodoro';
 let backgroundColor = '#F1F1EF'; // Default background color
 let fontColor = '#37352F'; // Default font color
 
 // DOM elements
+
+// Timer elements
 const timeLeftEl = document.getElementById('time-left');
-const startStopBtn = document.getElementById('start-stop-btn');
-const resetBtn = document.getElementById('reset-btn');
+
+// Button elements
+
+// Interval Buttons elements
 const pomodoroIntervalBtn = document.getElementById('pomodoro-interval-btn');
 const shortBreakIntervalBtn = document.getElementById('short-break-interval-btn');
 const longBreakIntervalBtn = document.getElementById('long-break-interval-btn');
+
+// Control buttons elements
+const startStopBtn = document.getElementById('start-stop-btn');
+const resetBtn = document.getElementById('reset-btn');
 const settingsBtn = document.getElementById('settings-btn');
 const settingsModal = document.getElementById('settings-modal');
 const closeModalBtn = document.querySelector('.close-btn');
@@ -21,9 +29,18 @@ const saveBtn = document.getElementById('save-btn');
 const timerContainer = document.getElementById('timer-container');
 const ripple = document.getElementById('ripple');
 const optionBtn = document.getElementById('option-btn');
+const helpBtn = document.getElementById("help-btn");
+
+// Modal elements
+const settingsModal = document.getElementById('settings-modal');
+const helpModal = document.getElementById("help-modal");
 const optionModal = document.getElementById('option-modal');
+
 // Miscallaneous elements
 const HideFootNote = document.getElementById('hide-footnote');
+
+// Animation elements
+const ripple = document.getElementById('ripple');
 
 // Initialize bootstrap tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -116,11 +133,50 @@ closeModalBtn.addEventListener('click', () => {
   settingsModal.style.display = 'none';
 });
 
-// Close the modal if clicking outside of it
+// Event listener for outside click to close modals
 window.addEventListener('click', (event) => {
-  if (event.target === settingsModal) {
-    settingsModal.style.display = 'none';
-  }
+  const modals = document.querySelectorAll('.modal'); // Common class for all modals
+  modals.forEach((modal) => {
+    if (event.target === modal) {
+      toggleModal(modal, null, 'close');
+    }
+  });
+});
+
+// Event listener for help button to open/close help modal
+helpBtn.addEventListener('click', () => {
+  toggleModal(helpModal, helpBtn, 'open');
+});
+
+// Event listener for reset button
+resetBtn.addEventListener('click', () => {
+  // Hard Reset the timer
+  // TODO: Add hard reset popup/ modal to confirm/ confirm
+  localStorage.clear();
+  resetTimer();
+  location.reload();
+});
+
+// Event listeners for settings to open/close modal
+settingsBtn.addEventListener('click', () => {
+  toggleModal(settingsModal, settingsBtn, 'open');
+});
+
+// Event listener for close buttons for all modals
+closeModalBtn.forEach((btn) => btn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  toggleModal(settingsModal, settingsBtn, 'close');
+  toggleModal(helpModal, helpBtn, 'close');
+}));
+
+// Event listener for outside click to close modals
+window.addEventListener('click', (event) => {
+  const modals = document.querySelectorAll('.modal'); // Common class for all modals
+  modals.forEach((modal) => {
+    if (event.target === modal) {
+      toggleModal(modal, null, 'close');
+    }
+  });
 });
 
 // Event listener for dark mode toggle to filter Background color and Font color options
@@ -273,6 +329,27 @@ function updateTimeLeftTextContent() {
   const seconds = timeLeft % 60;
   timeLeftEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
+// Function to toggle modal visibility on close button click and outside window click
+function toggleModal(modal, button, action = 'toggle') {
+  const isActive = modal.style.display === 'flex';
+
+  if (button == null && action === 'close') {
+    modal.style.display = 'none';
+    settingsBtn.classList.remove('active');
+    helpBtn.classList.remove('active');
+  }
+
+  if (action === 'toggle') {
+    modal.style.display = isActive ? 'none' : 'flex';
+    button?.classList.toggle('active', !isActive);
+  } else if (action === 'open') {
+    modal.style.display = 'flex';
+    button?.classList.add('active');
+  } else if (action === 'close') {
+    modal.style.display = 'none';
+    button?.classList.remove('active');
+  }
+}
 
 // Function to apply the user's saved preferences
 function applyUserPreferences() {
@@ -294,7 +371,7 @@ function applyUserPreferences() {
   document.body.style.color = fontColor;
   timeLeftEl.style.color = fontColor;
   // Update the buttons' font and background color
-  const buttons = document.querySelectorAll('.interval-btn, #start-stop-btn, #reset-btn, #settings-btn');
+  const buttons = document.querySelectorAll('.interval-btn, #start-stop-btn, #option-btn, #settings-btn, #reset-btn, #help-btn');
   // TODO: fix the buttons
   // buttons.forEach((button) => {
   //   button.style.color = fontColor;
