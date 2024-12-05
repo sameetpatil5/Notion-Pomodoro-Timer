@@ -186,9 +186,44 @@ optionBtn.addEventListener('click', () => {
   }
 });
 
-// Event listener for close button in the settings modal
-closeModalBtn.addEventListener('click', () => {
-  settingsModal.style.display = 'none';
+// Event listener for option button to show options
+optionBtn.addEventListener('click', (event) => {
+  // optionBtn.classList.toggle('active');
+  event.stopPropagation();
+  const icon = optionBtn.querySelector('i');
+
+  if (icon.classList.contains('fa-o')) {
+    icon.classList.replace('fa-o', 'fa-times');
+    optionBtn.classList.add('active');
+    optionModal.classList.add('show');
+  } else {
+    icon.classList.replace('fa-times', 'fa-o');
+    optionBtn.classList.remove('active');
+    optionModal.classList.remove('show');
+  }
+});
+
+// Close option modal if clicked outside of option modal 
+window.addEventListener('click', (event) => {
+  // Prevent closing the modal when clicking on the option button or inside the modal
+  if (event.target === optionBtn || optionModal.contains(event.target)) return;
+
+  // Check if any modal is open
+  let isModalOpen = false;
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach((modal) => {
+    if (modal.style.display === 'flex' && isModalOpen ===false) {
+      isModalOpen = true;
+    }
+  });
+
+  // Close modal only if it's active and visible
+  if (optionBtn.classList.contains('active') && optionModal.classList.contains('show') && !isModalOpen) {
+    const icon = optionBtn.querySelector('i');
+    icon.classList.replace('fa-times', 'fa-o');
+    optionBtn.classList.remove('active');
+    optionModal.classList.remove('show');
+  }
 });
 
 // Event listener for outside click to close modals
@@ -236,6 +271,32 @@ window.addEventListener('click', (event) => {
     }
   });
 });
+
+// Event listeners for each setting change (to update UI dynamically)
+document.getElementById('background-color').addEventListener('change', updateUISettings);
+document.getElementById('font-color').addEventListener('change', updateUISettings);
+document.getElementById('font').addEventListener('change', updateUISettings);
+document.getElementById('dark-mode').addEventListener('change', updateUISettings);
+document.getElementById('hide-footnote').addEventListener('change', updateUISettings);
+
+// Event listener for tab buttons navigation
+document.addEventListener("DOMContentLoaded", () => {
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Remove active class from all buttons and contents
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      tabContents.forEach((content) => content.classList.remove("active"));
+
+      // Add active class to the clicked button and corresponding content
+      button.classList.add("active");
+      document.getElementById(button.dataset.tab).classList.add("active");
+    });
+  });
+});
+
 
 // Event listener for dark mode toggle to filter Background color and Font color options
 document.addEventListener('DOMContentLoaded', () => {
