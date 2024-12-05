@@ -459,7 +459,16 @@ input:checked + .slider:before {
   border-color: grey;
 }
 
-/* Miscellaneous */
+/* Footnote Styles */
+.foot-note {
+  text-align: center; 
+  font-size: 0.8rem;
+}
+
+/* Profile for Footnoe Styles */
+.profile {
+  color: black;
+}
 button {
   pointer-events: auto;
 }
