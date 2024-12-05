@@ -1,7 +1,7 @@
 # Notion Pomodoro Timer  
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)  
-[![Status: In Development](https://img.shields.io/badge/Status-In%20Development-orange)](https://github.com/yourusername/notion-pomodoro-timer)
+[![License: Modified MIT](https://img.shields.io/badge/License-Modified%20MIT-blue.svg)](LICENSE)
+[![Status: In Development](https://img.shields.io/badge/Status-In%20Development-orange)](https://github.com/sameetpatil5/notion-pomodoro-timer)
 
 **Notion Pomodoro Timer** is an open-source repository for the development of a minimalist Pomodoro timer, designed to function as a simple Notion widget. Its goal is to provide quick and easy integration of a productivity timer within Notion.  
 
@@ -34,7 +34,7 @@ This project is currently **under development** and does not represent the final
 
 ### Deploying the Website
 
-(_yet to be selected_)
+The widget/ webpage is planned to be deployed on GitHub Pages in the future.
 
 ### Embedding into Notion  
 
@@ -50,7 +50,8 @@ This project is currently **under development** and does not represent the final
    ├── index.html      # Main HTML file for the Pomodoro timer
    ├── styles.css      # CSS file for styling
    ├── script.js       # JavaScript file for functionality
-   └── README.md       # Project documentation
+   ├── README.md       # Project documentation and Announcements
+   └── LICENSE         # Project License
    ```
 
 ---
