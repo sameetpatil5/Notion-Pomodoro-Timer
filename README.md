@@ -45,8 +45,6 @@ The widget/ webpage is deployed on **[GitHub Pages](https://sameetpatil5.github.
    https://sameetpatil5.github.io/notion-pomodoro-timer/
    ```
 
----
-
 ### Workflow for Updates  
 
 #### When you make changes in `main` and want to test them  
@@ -77,8 +75,6 @@ The widget/ webpage is deployed on **[GitHub Pages](https://sameetpatil5.github.
    git push
    ```
 
----
-
 ### Reverting if Something Breaks  
 
 If something breaks in `deploy`, you can revert to the last working state using:  
@@ -90,8 +86,6 @@ If something breaks in `deploy`, you can revert to the last working state using:
    ```
 
 ---
-
-Let me know if you need further customization!
 
 ## 📂 File Structure  
 
