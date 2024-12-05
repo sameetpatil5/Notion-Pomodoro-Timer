@@ -41,11 +41,3 @@ build/
 *.min.js
 
 *.min.css
-
-
-
-# Optional: Ignore specific files 
-
-README.md
-
-LICENSE
