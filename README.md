@@ -32,16 +32,66 @@ This project is currently **under development** and does not represent the final
 
 ## 🚀 Deployment  
 
-### Deploying the Website
+### Deploying the Website  
 
-The widget/ webpage is planned to be deployed on GitHub Pages in the future.
+The widget/ webpage is deployed on **[GitHub Pages](https://sameetpatil5.github.io/notion-pomodoro-timer/)**.  
 
 ### Embedding into Notion  
 
 1. Go to your Notion page.  
-2. Use the `/embed` command in Notion and paste the GitHub Pages link.  
+2. Use the `/embed` command in Notion and paste the GitHub Pages link:  
+
+   ```plaintext
+   https://sameetpatil5.github.io/notion-pomodoro-timer/
+   ```
 
 ---
+
+### Workflow for Updates  
+
+#### When you make changes in `main` and want to test them  
+
+1. **Merge `main` into `staging` to test:**  
+
+   ```bash
+   # Switch to the 'staging' branch
+   git checkout staging
+
+   # Merge changes from 'main' into 'staging'
+   git merge main
+
+   # Push the updates to the remote repository
+   git push
+   ```
+
+2. **After testing, merge `staging` into `deploy` to deploy:**  
+
+   ```bash
+   # Switch to the 'deploy' branch
+   git checkout deploy
+
+   # Merge changes from 'staging' into 'deploy'
+   git merge staging
+
+   # Push the updates to the remote repository
+   git push
+   ```
+
+---
+
+### Reverting if Something Breaks  
+
+If something breaks in `deploy`, you can revert to the last working state using:  
+
+   ```bash
+   git checkout deploy
+   git reset --hard <last-working-commit-hash>
+   git push --force origin deploy
+   ```
+
+---
+
+Let me know if you need further customization!
 
 ## 📂 File Structure  
 
@@ -101,8 +151,8 @@ _*Thankyou* for visiting this Repository_
 
 ### PS
 
-Thanks to **[@Giorgiark](https://github.com/Giorgiark)**, this GitHub repo was inspired by the [**`Giorgiark/pomodorotimer`**](https://github.com/giorgiark/pomodorotimer/) Git repo, which provided the base for the project. I didn't fork the repo because **Giorgiark's repo was very simple and barely had any features**. My idea is quite different from the original, but as **Giorgiark had the base template and colors figured out** for the Notion Space, I used his base to build upon.
+Special thanks to **[@Giorgiark](https://github.com/Giorgiark)**, whose GitHub repository [**`Giorgiark/pomodorotimer`**](https://github.com/giorgiark/pomodorotimer/) provided the initial inspiration for this project. While my implementation differs significantly and expands upon the original idea, I built upon the base template and color scheme tailored for Notion Spaces that Giorgiark had already established.  
 
-The original repo didn't have a license, but if I did something wrong, I apologize and would like to give full credit to [@Giorgiark](https://github.com/Giorgiark) for the original inspiration.
+Although the original repository did not include a license, I want to acknowledge and give full credit to **[@Giorgiark](https://github.com/Giorgiark)** for their foundational work and inspiration for this project.  
 
 ---
