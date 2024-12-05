@@ -23,38 +23,11 @@ const ripple = document.getElementById('ripple');
 const optionBtn = document.getElementById('option-btn');
 const optionModal = document.getElementById('option-modal');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
-
-  tabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Remove active class from all buttons and contents
-      tabButtons.forEach((btn) => btn.classList.remove("active"));
-      tabContents.forEach((content) => content.classList.remove("active"));
-
-      // Add active class to the clicked button and corresponding content
-      button.classList.add("active");
-      document.getElementById(button.dataset.tab).classList.add("active");
-    });
-  });
-});
-
-
-// Event listener for option button
-optionBtn.addEventListener('click', () => {
-  optionBtn.classList.toggle('expanded'); // Toggle expanded class
-  const icon = optionBtn.querySelector('i');
-
-  if (icon.classList.contains('fa-o')) {
-    icon.classList.replace('fa-o', 'fa-times');
-    optionModal.classList.add('show'); // Add class to show modal
-    console.log("Option button is pressed");
-  } else {
-    icon.classList.replace('fa-times', 'fa-o');
-    optionModal.classList.remove('show'); // Remove class to hide modal
-    console.log("Close button is pressed");
-  }
+// Initialize bootstrap tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+  delay: { "show": 1000, "hide": 200 }
+}))
 });
 
 // Event listeners for interval buttons
@@ -126,9 +99,14 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Event listener for settings button
-settingsBtn.addEventListener('click', () => {
-  settingsModal.style.display = 'flex';
+// Event listener for option button to show options tooltip
+optionBtn.addEventListener('click', () => {
+  if (!optionModal.classList.contains('show')) {
+    bootstrap.Tooltip.getInstance('#option-btn').disable()
+  } else {
+      bootstrap.Tooltip.getInstance('#option-btn').enable();
+      bootstrap.Tooltip.getInstance('#option-btn').hide(200);
+  }
 });
 
 // Event listener for close button in the settings modal
