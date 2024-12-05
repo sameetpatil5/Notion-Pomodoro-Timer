@@ -1,10 +1,68 @@
+// Load Pomodoro settings from local storage
+const pomodoroSettings = {
+  get focus() {
+    return parseInt(localStorage.getItem('focusInterval')) || 25;
+  },
+  get shortBreak() {
+    return parseInt(localStorage.getItem('shortBreakInterval')) || 5;
+  },
+  get longBreak() {
+    return parseInt(localStorage.getItem('longBreakInterval')) || 15;
+  },
+  get focusCount() {
+    return parseInt(localStorage.getItem('focusCount')) || 4;
+  },
+  get sessionCount() {
+    return parseInt(localStorage.getItem('sessionCount')) || 4;
+  },
+  get autoStart() {
+    return localStorage.getItem('autoStart') === 'true' || false;
+  },
+};
+
+// Load UI settings from local storage
+const uiSettings = {
+  get backgroundColor() {
+    return localStorage.getItem('backgroundColor') || '#F1F1EF';
+  },
+  get fontColor() {
+    return localStorage.getItem('fontColor') || '#37352F';
+  },
+  get font() {
+    return localStorage.getItem('font') || 'Rubik';
+  },
+  get darkMode() {
+    return localStorage.getItem('darkMode') === 'true' || false;
+  },
+  get hideFootnote() {
+    return localStorage.getItem('hideFootnote') === 'true' || false;
+  },
+};
+
 // Global variables
 let timeLeft;
 let timerInterval;
-let currentInterval = 'pomodoro';
-let backgroundColor = '#F1F1EF'; // Default background color
-let fontColor = '#37352F'; // Default font color
 
+// Load first time flag from local storage to apply default prefrences
+const appState = {
+  get isFirstTime() {
+    // Return 'false' if 'isFirstTime' is 'false' in localStorage, otherwise return 'true'
+    return localStorage.getItem('isFirstTime') === 'false' ? false : true;
+  },
+};
+
+// Load completed pomodoros, sessions & current interval from local storage
+const pomodoroState = {
+  get focusCompleted() {
+    return parseInt(localStorage.getItem('focusCompleted')) || 0;
+  },
+  get sessionCompleted() {
+    return parseInt(localStorage.getItem('sessionCompleted')) || 0;
+  },
+  get currentInterval() {
+    return localStorage.getItem('currentInterval') || 'pomodoro';
+  },
+};
 // DOM elements
 
 // Timer elements
