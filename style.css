@@ -12,6 +12,15 @@ body {
   overflow-y: hidden;
 }
 
+/* Media Queries */
+
+/* General Adjustments for Smaller Screens */
+/* Pad the timer so that it does not overlap the option button */
+/* Reduce timer text with decreasing size */
+/* Make the settings modal and the help modal responsive with the screen */
+/* 640 below start making the buttons and the timer small  */
+/* 460 stack the buttons vertically and make the timer smaller */
+
 /* Container Styles */
 
 /* Main/Pomodoro Container */
