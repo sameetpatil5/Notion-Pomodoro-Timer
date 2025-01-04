@@ -25,11 +25,6 @@ body {
 
 /* Scale down the entire UI when the width is between 640px and 900px */
 @media (max-width: 640px) and (min-width: 460px) {
-  #pomodoro-container {
-    transform: scale(0.9);
-    transform-origin: center center;
-  }
-
   #timer-container {
     transform: scale(0.8);
     max-height: 160px;
@@ -44,19 +39,16 @@ body {
 
 /* Stack interval buttons vertically and make the timer smaller when width is below 460px */
 @media (max-width: 460px) {
-  #pomodoro-container {
-    transform: scale(0.8);
-    transform-origin: (0, 0);
-  }
-
   #interval-btn-container {
+    transform: scale(0.9);
+    transform-origin: (0, 0);
     flex-direction: column;
     align-items: center;
     margin-top: -10px;
   }
 
   #timer-container {
-    transform: scale(0.7);
+    transform: scale(0.6);
     max-height: 140px;
     position: relative;
     top: 15px;
@@ -64,6 +56,27 @@ body {
 
   #option-btn {
     position: fixed;
+  }
+
+  #start-stop-btn,
+  .interval-btn,
+  .round-btn {
+    transform: scale(0.9);
+    transform-origin: (0, 0);
+  }
+
+  .modal-content {
+    transform: scale(0.9);
+    transform-origin: (0, 0);
+  }
+
+  .interval-btn.active,
+  #start-stop-btn.active,
+  #option-btn.active,
+  #settings-btn.active,
+  #help-btn.active,
+  #help-btn.active {
+    transform: scale(1);
   }
 }
 
@@ -79,7 +92,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 /* Interval Container */
