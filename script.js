@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 pomodoroIntervalBtn.addEventListener('click', () => {
   setActiveButton(pomodoroIntervalBtn);  // Set Focus button as active
   currentInterval = 'pomodoro';
-  timeLeft = 25 * 60;
+  timeLeft = pomodoroSettings.focus * 60;
   updateTimeLeftTextContent();
   resetTimer();
 });
@@ -120,7 +120,7 @@ pomodoroIntervalBtn.addEventListener('click', () => {
 shortBreakIntervalBtn.addEventListener('click', () => {
   setActiveButton(shortBreakIntervalBtn);  // Set Short Break button as active
   currentInterval = 'short-break';
-  timeLeft = 5 * 60;
+  timeLeft = pomodoroSettings.shortBreak * 60;
   updateTimeLeftTextContent();
   resetTimer();
 });
@@ -128,7 +128,7 @@ shortBreakIntervalBtn.addEventListener('click', () => {
 longBreakIntervalBtn.addEventListener('click', () => {
   setActiveButton(longBreakIntervalBtn);  // Set Long Break button as active
   currentInterval = 'long-break';
-  timeLeft = 10 * 60;
+  timeLeft = pomodoroSettings.longBreak * 60;
   updateTimeLeftTextContent();
   resetTimer();
 });
@@ -159,10 +159,34 @@ window.addEventListener('dblclick', (event) => {
   }
 });
 
-// Add event listener to reset timer using keyboard shortcuts [:ctrl + Space]
+// Event listener to reset timer using keyboard shortcuts [:ctrl + Space]
 document.addEventListener('keydown', (event) => {
   if (event.ctrlKey && event.code === 'Space') {
     event.preventDefault(); 
+    resetTimer();
+  }
+});
+
+// Event listener for Focus Interval button
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'Digit1') {
+    pomodoroIntervalBtn.click();
+    resetTimer();
+  }
+});
+
+// Event listener for Short Break Interval button
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'Digit2') {
+    shortBreakIntervalBtn.click();
+    resetTimer();
+  }
+});
+
+// Event listener for Long Break Interval button
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'Digit3') {
+    longBreakIntervalBtn.click();
     resetTimer();
   }
 });
@@ -217,6 +241,25 @@ window.addEventListener('click', (event) => {
   }
 });
 
+// Event listner to open option model using keyboard shortcut [alt+o]
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'KeyO') {
+    optionBtn.click();
+  }
+});
+
+// Event listener for escape key to close modals
+window.addEventListener('keydown', (event) => {
+  if (event.code === 'Escape') {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach((modal) => {
+      if (modal.style.display === 'flex') {
+        toggleModal(modal, null, 'close');
+      }
+    });
+  }
+})
+
 // Event listener for outside click to close modals
 window.addEventListener('click', (event) => {
   const modals = document.querySelectorAll('.modal'); // Common class for all modals
@@ -232,6 +275,13 @@ helpBtn.addEventListener('click', () => {
   toggleModal(helpModal, helpBtn, 'open');
 });
 
+// Event listener for help model to open using keyborad shortcut [alt+H]
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'KeyH') {
+    toggleModal(helpModal, helpBtn);
+  }
+})
+
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
   // Hard Reset the timer
@@ -241,10 +291,24 @@ resetBtn.addEventListener('click', () => {
   location.reload();
 });
 
+// Event listener to hard reset using keyborad shortcut [alt+R]
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'KeyR') {
+    resetBtn.click();
+  }
+})
+
 // Event listeners for settings to open/close modal
 settingsBtn.addEventListener('click', () => {
   toggleModal(settingsModal, settingsBtn, 'open');
 });
+
+// Event listener for settings model to open using keyborad shortcut [alt+S]
+document.addEventListener('keydown', (event) => {
+  if (event.altKey && event.code === 'KeyS') {
+    toggleModal(settingsModal, settingsBtn);
+  }
+})
 
 // Event listener for close buttons for all modals
 closeModalBtn.forEach((btn) => btn.addEventListener('click', (event) => {
